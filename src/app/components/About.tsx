@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
-import { MapPin, Mail, Phone, User } from 'lucide-react';
+import { MapPin, User } from 'lucide-react';
+import { FaEnvelope, FaPhone } from 'react-icons/fa6';
 import { Language, content } from '../data/content';
 import { SectionHeader } from './SectionHeader';
 
@@ -43,17 +44,27 @@ export function About({ language }: AboutProps) {
             </div>
 
             {/* Contact info */}
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: MapPin, label: t.location },
-                { icon: Mail, label: t.email },
-                { icon: Phone, label: t.phone },
-              ].map(({ icon: Icon, label }) => (
-                <div key={label} className="glass rounded-xl p-3 flex items-center gap-3" style={{ border: '1px solid var(--border)' }}>
-                  <Icon size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
-                  <span className="text-xs truncate" style={{ color: 'var(--muted-foreground)' }}>{label}</span>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a
+                href={`mailto:${t.email}`}
+                className="glass rounded-xl p-3 flex items-center gap-3 hover:scale-102 transition-transform group"
+                style={{ border: '1px solid var(--border)', textDecoration: 'none' }}
+              >
+                <FaEnvelope size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
+                <span className="text-xs truncate" style={{ color: 'var(--muted-foreground)' }}>{t.email}</span>
+              </a>
+              <a
+                href={`tel:${t.phone.replace(/\s/g, '')}`}
+                className="glass rounded-xl p-3 flex items-center gap-3 hover:scale-102 transition-transform group"
+                style={{ border: '1px solid var(--border)', textDecoration: 'none' }}
+              >
+                <FaPhone size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
+                <span className="text-xs truncate" style={{ color: 'var(--muted-foreground)' }}>{t.phone}</span>
+              </a>
+              <div className="glass rounded-xl p-3 flex items-center gap-3 sm:col-span-2" style={{ border: '1px solid var(--border)' }}>
+                <MapPin size={14} style={{ color: 'var(--primary)', flexShrink: 0 }} />
+                <span className="text-xs" style={{ color: 'var(--muted-foreground)' }}>{t.location}</span>
+              </div>
             </div>
           </motion.div>
 

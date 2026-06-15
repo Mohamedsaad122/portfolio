@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope } from 'react-icons/fa6';
 import { Language, content } from '../data/content';
 
 interface FooterProps { language: Language; }
@@ -39,20 +40,21 @@ export function Footer({ language }: FooterProps) {
             </p>
             <div className="flex gap-3">
               {[
-                { icon: Github, href: 'https://github.com/mohamedsaad', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://linkedin.com/in/mohamedsaad', label: 'LinkedIn' },
-                { icon: Mail, href: 'mailto:mohamedSaad.dev@gmail.com', label: 'Email' },
+                { icon: FaGithub, href: 'https://github.com/Mohamedsaad122', label: 'GitHub' },
+                { icon: FaLinkedin, href: 'https://www.linkedin.com/in/mohamed-saad-4b1055334', label: 'LinkedIn' },
+                { icon: FaWhatsapp, href: 'https://wa.me/201068017201', label: 'WhatsApp' },
+                { icon: FaEnvelope, href: 'mailto:moamedsaad122@gmail.com', label: 'Email' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={label === 'Email' ? undefined : '_blank'}
+                  rel={label === 'Email' ? undefined : 'noopener noreferrer'}
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg glass flex items-center justify-center hover:scale-110 transition-transform"
+                  className="w-9 h-9 rounded-lg glass flex items-center justify-center hover:scale-110 transition-transform hover:text-primary hover:border-primary"
                   style={{ border: '1px solid var(--border)', color: 'var(--muted-foreground)' }}
                 >
-                  <Icon size={15} />
+                  <Icon size={16} />
                 </a>
               ))}
             </div>
@@ -84,11 +86,11 @@ export function Footer({ language }: FooterProps) {
               {language === 'en' ? 'Contact' : 'تواصل'}
             </p>
             <div className="flex flex-col gap-2 text-sm" style={{ color: 'var(--muted-foreground)' }}>
-              <a href="mailto:mohamedSaad.dev@gmail.com" className="hover:text-primary transition-colors">
-                mohamedSaad.dev@gmail.com
+              <a href="mailto:moamedsaad122@gmail.com" className="hover:text-primary transition-colors">
+                moamedsaad122@gmail.com
               </a>
-              <a href="tel:+201000000000" className="hover:text-primary transition-colors">
-                +20 100 000 0000
+              <a href="tel:+201068017201" className="hover:text-primary transition-colors">
+                +20 106 801 7201
               </a>
               <span>{language === 'en' ? 'Egypt' : 'مصر'}</span>
             </div>
